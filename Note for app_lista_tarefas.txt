@@ -1,1 +1,1 @@
-App_lista_tarefas_public was a folder in the public dir of Wamp. App_lista_tarefas was a folder outside the public dir, this was done for security reasons. App_lista_tarefas-epizy is a folder with edited files that were deployed here: http://developmentaddress.epizy.com/todas_tarefas.php .
+App_lista_tarefas_public was a folder in the public dir of Wamp. App_lista_tarefas was a folder outside the public dir, this was done for security reasons. App_lista_tarefas-epizy is a folder with edited files that were deployed here: http://developmentaddress.epizy.com .
