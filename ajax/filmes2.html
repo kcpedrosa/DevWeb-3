@@ -1,0 +1,153 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Films - using JSON</title>
+
+     <!-- Bootstrap CSS -->
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <!--Font AWESOME-->
+    <script src="https://kit.fontawesome.com/e57022a284.js" crossorigin="anonymous"></script>
+
+    <script src="xmltojson.js"></script>
+      
+    <script>
+        function getFilmes() {
+          let xhr = new XMLHttpRequest()
+          xhr.open('GET', 'http://localhost/ajax/filmes.json')
+
+
+          xhr.onreadystatechange = function() {
+          if(xhr.readyState == 4 && xhr.status == 200){
+            let jsonFilmes = xhr.responseText
+            //log bellow will show us the json
+            //console.log(jsonFilmes)
+
+            let objFilmes = JSON.parse(jsonFilmes)
+            console.log(objFilmes)
+            
+
+            for (let i in objFilmes['filmes']) {
+
+              console.log(objFilmes['filmes'][i])
+              //let item is a means to simplify the path
+              let item = objFilmes['filmes'][i]
+
+              let divRow = document.createElement('div')
+              divRow.className = 'row'
+
+              let divCol = document.createElement('div')
+              divCol.className = 'col'
+
+              let p1 = document.createElement('p')
+              p1.innerHTML = '<strong>Título : </strong> ' + item['titulo']
+              let p2 = document.createElement('p')
+              p2.innerHTML = '<strong>Resumo do filme : </strong> ' + item['resumo']
+              
+              let genero = ''
+              let c = 1
+              //God bless python
+              for (let g in item['generos'] ) {
+                console.log(item['generos'][g])
+
+                  if(c < (item['generos']).length){
+                  genero += `${item['generos'][g]['genero']} / `
+                  c++
+                } else {
+                  genero += `${item['generos'][g]['genero']} `
+                }
+              }
+
+             
+              let p3 = document.createElement('p')
+              p3.innerHTML = '<strong>Gênero : </strong> ' + genero
+
+               let atores = ''
+              let d = 1
+              for (let h in item['elenco'] ) {
+                console.log(item['elenco'][h])
+
+                  if(d < (item['elenco']).length){
+                  atores += `${item['elenco'][h]['ator']} / `
+                  d++
+                } else {
+                  atores += `${item['elenco'][h]['ator']} `
+                }
+              }
+
+              let p4 = document.createElement('p')
+              p4.innerHTML = '<strong>Elenco : </strong> ' + atores
+
+              let p5 = document.createElement('p')
+              p5.innerHTML = '<strong>Data de lançamento : </strong> ' + item['dataLancamento']['data'] 
+              + ' [ ' + item['dataLancamento']['pais'] + ' ] '
+              //what was the reason to set country inside an object [pay attention to @attributes and proto]
+
+              let hr = document.createElement('hr')
+
+              divRow.appendChild(divCol)
+              divCol.appendChild(p1)
+              divCol.appendChild(p2)
+              divCol.appendChild(p3)
+              divCol.appendChild(p4)
+              divCol.appendChild(p5)
+              divCol.appendChild(hr)
+
+              document.getElementById('lista').appendChild(divRow)
+              
+
+            }
+
+                      
+            }
+
+          if(xhr.readyState == 4 && xhr.status == 404){
+            // 
+            }
+          }
+
+          xhr.send()
+
+        }
+
+    </script>
+   
+  </head>
+
+  <body>
+
+    <nav class="navbar  navbar-dark bg-dark mb-4">
+      <div class="container">
+        <div class="navbar-brand mb-0 h1 ">
+          <h3>
+            Films List
+          </h3>
+          
+        </div>
+      </div>
+      
+    </nav>
+
+    <div class="container" id="lista">    
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary" onclick="getFilmes()">
+            Listar Filmes
+          </button>          
+        </div>
+      </div>
+      
+    </div>
+
+
+
+    <!-- Optional JavaScript YOU WILL need it to make some components work well, like the dropdown-->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

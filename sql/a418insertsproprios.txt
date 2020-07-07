@@ -1,0 +1,12 @@
+INSERT INTO tb_clientes (nome, idade) VALUES ('John5', '40');
+INSERT INTO tb_clientes (nome, idade) VALUES ('Manson', '45');
+INSERT INTO tb_produtos (produto, valor) VALUES ('Vox AC30', 3000);
+INSERT INTO tb_descricoes_tecnicas (id_produto, descricao_tecnica) VALUES (4, 'Clássico amp da Vox');
+INSERT INTO tb_pedidos (id_cliente) VALUES (1); 
+[john5 pediu algo][esse algo será evidenciado na tabela tb_pedidos_produtos
+[nao precisa colocar o id_pedido pois e auto_inc e a data_hora é current_timestamp
+
+INSERT INTO tb_pedidos_produtos (id_pedido, id_produto) VALUES (1, 4);
+[no pedido id 1 comprou-se o Vox AC30 - que tem id 4
+INSERT INTO tb_pedidos_produtos (id_pedido, id_produto) VALUES (2, 4);
+[um novo pedido foi feito comprando outro Vox , por acaso esse pedido tb foi de John 5

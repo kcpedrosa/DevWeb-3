@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Requisições Assíncronas</title>
+		
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+		<script>
+			function requisitarPagina(url){
+			//this bellow avoids that the gif appears together with the msg of the div(line 45 and 51)
+			//appears the gif then it is removed due to  line 44 codes
+			//so it is a sequence, first the gif then the message
+			document.getElementById('conteudo').innerHTML = ''
+
+			//include the loading gif in the page
+			if(document.getElementById('loading') == null ){
+				//attention, prof put an ! in the begginning, but
+				//getElement... Returns null if no elements with the specified ID exists.
+				//I thought that the return was false
+				let imgLoading = document.createElement('img')
+				imgLoading.id = 'loading'
+				imgLoading.src = 'load.gif'
+
+				imgLoading.className = 'rounded mx-auto d-block'
+				document.getElementById('conteudo').appendChild(imgLoading)
+			}
+
+
+			let ajax = new XMLHttpRequest();
+
+
+			//request not init, state = 0
+			console.log(ajax.readyState)
+
+			ajax.open('GET', url)
+			//server connec established, state = 1
+			console.log(ajax.readyState)
+
+
+			
+			
+			//some logic that watches the progress of the request
+			//or = () => { etc (arrow func)
+			ajax.onreadystatechange = function() {
+				if(ajax.readyState == 4 && ajax.status == 200){
+					//console.log(`request finished successfully, status is : ${ajax.status}`)
+					document.getElementById('conteudo').innerHTML = ajax.responseText 
+
+					
+					//the command above overwrites what is in conteudo, so there will ne ntng to remove
+					//document.getElementById('loading').remove()
+					//for debugging
+					console.log(ajax.responseText)
+				}
+				if(ajax.readyState == 4 && ajax.status == 404){
+					//console.log(`request finished successfully BUT resource couldn't be located, status is : ${ajax.status}`)
+					document.getElementById('conteudo').innerHTML = 'request finished successfully BUT resource couldnt be located, status is 404' 
+					//change pagina2conteudo from 2 to 5 to test
+
+
+					//document.getElementById('loading').remove()
+				}
+			}
+
+
+			ajax.send()
+			//console.log(ajax)
+			
+			}
+
+			
+
+		</script>
+	
+	</head>
+
+	<body>
+
+		<!-- Static navbar -->
+	    <nav class="navbar navbar-light bg-light mb-4">
+	      <div class="container">
+	        <div class="navbar-brand mb-0 h1">
+	        	<h3>Requisições síncronas e assíncronas</h3>
+	        </div>
+	      </div>
+	    </nav>
+
+
+	    <div class="container">
+
+	    	<div class="row mb-2">
+	    		<div class="col-md-4 center"></div>
+	    		<div class="col-md-4 center">
+	    			<a href="#" class="btn btn-primary" onclick="requisitarPagina('pagina_1_conteudo.html')">Página 1</a>
+	    			<a href="#" class="btn btn-primary" onclick="requisitarPagina('pagina_2_conteudo.html')">Página 2</a>
+	    			<a href="#" class="btn btn-primary" onclick="requisitarPagina('pagina_3_conteudo.html')">Página 3</a>
+	    		</div>
+	    		<div class="col-md-4 center"></div>
+	    	</div>
+	    	
+	    	<div class="row">
+		    	<div class="col-md-1"></div>
+
+		    	<div class="col-md-10" id="conteudo">
+		    		<!--above setted id but could be name or class-->
+		    		<!--conteudo pagina1 removido daqui-->
+		    			
+		    	</div>
+		    		
+				<div class="col-md-1"></div>
+			</div>
+
+		</div>	
+	</body>
+</html>

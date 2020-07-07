@@ -1,0 +1,9 @@
+SELECT * FROM `tb_clientes` LEFT JOIN tb_pedidos ON (tb_clientes.id_cliente = tb_pedidos.id_cliente);
+INSERT INTO tb_clientes (nome, idade) VALUES ('Mick Thomson', 38);
+INSERT INTO tb_clientes (nome, idade) VALUES ('Corey Taylor', 41);
+SELECT * FROM `tb_clientes` LEFT JOIN tb_pedidos ON (tb_clientes.id_cliente = tb_pedidos.id_cliente);
+[will return Mick and Corey with NULL because he has no purchases
+SELECT * FROM `tb_produtos` LEFT JOIN tb_imagens ON (tb_produtos.id_produto = tb_imagens.id_produto)
+[note that will repeat notebook three times because it has 3 imgs and return NULL to Vox because it has no imgs
+
+SELECT * FROM `tb_clientes` RIGHT JOIN tb_pedidos ON (tb_clientes.id_cliente = tb_pedidos.id_cliente);
