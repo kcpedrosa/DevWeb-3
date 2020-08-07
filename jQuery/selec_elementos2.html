@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>jQuery</title>
+	<meta charset="utf-8">
+	
+
+
+	<script
+	  src="https://code.jquery.com/jquery-3.5.1.js"
+	  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	  crossorigin="anonymous">//that's the CDN link,wiser</script>
+</head>
+
+<body>
+	<input class="exemplo1" type="text" placeholder="input 1" name="">
+	<input type="text" placeholder="input 2" name="">
+	<input type="text" placeholder="input 3" name="">
+
+	<div class="exemplo1"> div 1 </div>
+	<div> div 2 </div>
+	<div> div 3 </div>
+
+	<ul class="lista1">
+		<li class="exemplox">opção 1 - Oslo</li>
+		<li>opção 2</li>
+		<li>opção 3</li>
+	</ul>
+
+	<ul class="lista2">
+		<li class="exemplox">opção 1 - Bergen zero par</li>
+		<li class="exemplox">opção 2 - Some town um impar</li>
+		<li>opção 3</li>
+	</ul>
+
+
+	<div class="lista3">
+	<ul >
+		<li class="exemplox">opção 1 - Svaalbard</li>
+		<li class="exemplox">opção 2</li>
+		<li>opção 3</li>
+	</ul>
+	</div>
+
+
+
+
+
+<script>
+	//combining 
+	//console.log($('.exemplo1'))
+
+	//selecting a class from a specific class
+	//console.log($('div.lista2 .exemplox'))
+
+	//we may use some filters
+	console.log($('.lista2 .exemplox'))
+	console.log($('.lista2 .exemplox:first'))
+	console.log($('.lista2 .exemplox:last'))
+	console.log($('.lista2 .exemplox:odd'))
+	console.log($('.lista2 .exemplox:even'))
+
+
+
+
+	//console.log($('h1'))
+	//console.log($('div'))
+	//$('h1').html('a lib jQuery está funcionando mt bem...');
+</script>
+</body>
+</html>

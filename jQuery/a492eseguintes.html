@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			.padrao {
+				background-color: #D0A9F5;
+			}
+
+			#divExt{
+				height: 80px;
+				width: 80px;
+				background-color: #01A9DB;
+				padding: 40px;
+			}
+
+			#divInt{
+				height: 80px;
+				width: 80px;
+				background-color: #08298A;
+			}
+
+			.inputFocado {
+				background-color: #F5A9BC;
+			}
+
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(()=>{
+				
+			//keyboard tests
+				$('#teclado').keydown(()=>{
+					$('#resultTecla').html('Key pressed ... ')
+					//console.log('Key pressed ....')
+				})
+
+				$('#teclado').keyup((e)=>{
+					$('#resultTecla').html('Key went up ...')
+					//console.log('Key went up ...')
+					console.log(e.keyCode)
+					if(e.keyCode == 13){
+						let valor = $(e.target).val()
+						$('#resultTecla').html(valor)
+						$(e.target).val('')
+					}
+				})
+
+				$('#teclado').keyup((e)=>{
+					//before was keydown but the char is insert in the key up[so keydown was leaving the char there]
+					if(e.keyCode < 49 || e.keyCode > 53){
+						let txt = $(e.target).val()
+						txt = txt.slice(0,-1)
+						$(e.target).val(txt)
+					}
+				})
+				//files splited
+
+				/*
+				//we will refactor the code bellow to a less verbose form
+				$('#nome1').focus((e)=>{
+					console.log('NOME received the focus ...')
+					$(e.target).addClass('inputFocado')
+				})
+
+				$('#email1').focus((e)=>{
+					console.log('EMAIL received the focus ...')
+					$(e.target).addClass('inputFocado')
+				})
+
+				*/
+				$('#nome1,#email1').focus((e)=>{
+					console.log('THIS ELEMENT received the focus ...')
+					$(e.target).addClass('inputFocado')
+				})
+				//the same can be done to blur
+
+				$('#nome1').blur((e)=>{
+					console.log('NOME lost focus/BLUR ...')
+					$(e.target).removeClass('inputFocado')
+				})
+
+				
+
+				$('#email1').blur((e)=>{
+					console.log('EMAIL has lost focus/BLUR ...')
+					$(e.target).removeClass('inputFocado')
+
+				})
+
+				$('#opcao1').change((e)=>{
+					console.log($(e.target).val())
+				})
+
+				$('#form').submit(function(e){
+					console.log('Formulario enviado')
+					e.preventDefault()
+				})
+
+				$('a').click(function(e){
+					e.preventDefault()
+				})
+			})
+
+		</script>
+	</head>
+
+	<body>
+		
+		<div id="topo">
+			<h1>Eventos</h1>
+		</div>
+
+		<div>
+			
+
+			<h3>Mouse</h3>
+			<button id="btn1" type="button">Clique aqui</button>
+			<button id="double" type="button">Clique aqui 2x</button>
+			<div id="div2" style="background-color: red; width: 80px; height: 50px; margin-top: 10px; margin-bottom: 10px"></div>
+			<span>Resultado do evento sobre a div</span>  <span id="result"> =-= </span>
+			<br><br>
+			
+			<div id="divExt">
+				<div id="divInt"></div>
+			</div>
+			<span > Div Externa - </span> <span id="resultDiv"></span>
+			<br>
+			<span id="result2Div"></span>
+
+			<br>
+			<span> Div Interna - </span> <span id="resultDivInt"></span>
+
+
+
+			<hr />
+
+			<h3>Teclado</h3>
+			<span>Nome:</span>
+			<input type="text" id="teclado" />
+			<span id="resultTecla">Resultado do evento sobre o input</span>
+			<hr />
+
+			<h3>Formulário</h3>
+			<form id="form">
+				<span>Nome:</span>
+				<input type="text" id="nome1" />
+
+				<span>E-mail:</span>
+				<input type="text" id="email1" />
+
+				<span>Motivo do contato:</span>
+				<select id="opcao1">
+					<option value="">-- Selecione --</option>
+					<option value="duvida">Dúvida</option>
+					<option value="sugestao">Sugestão</option>
+				</select>
+
+				<p>
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+				</p>
+				
+				<button type="submit">Enviar</button>
+			</form>
+			<br>
+			<a href="https://www.google.com/?gws_rd=ssl" style="border: 2px solid black"> -- GOOGLE -- </a>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>jQuery </title>
+	<meta charset="utf-8">
+	
+
+
+	<script
+	  src="https://code.jquery.com/jquery-3.5.1.js"
+	  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	  crossorigin="anonymous">//that's the CDN link,wiser</script>
+
+	<script>
+	$(document).ready( ()=> {
+	function teste(){
+		
+		console.log('conteudo div 1: ', $('#div1').html())
+		console.log('conteudo div 2: ', $('#div2').html())
+		//$('#div2').html('<strong> Aqui vai o valor novo</strong>')
+		//$('#div2').html('<strong style="color:red"> Aqui vai o valor novo</strong>')
+		//$('#div1').text('<strong> Aqui vai o valor novo</strong>')//goes without conversion
+
+	}
+
+	teste()
+
+	})
+	</script>
+	
+</head>
+
+<body>
+	
+
+
+<div id="div1" style="border: solid 10px green; width: 100px;height: 100px;">
+	<a href="#">link</a>
+	<p> paragraph as is</p>
+	text
+	<div>some text</div>
+</div>
+<div id="div2" style="border: solid 10px black; width: 100px;height: 100px;">teste 2</div>
+
+
+</body>
+</html>

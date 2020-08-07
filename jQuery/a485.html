@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>jQuery - </title>
+	<meta charset="utf-8">
+	
+
+
+	<script
+	  src="https://code.jquery.com/jquery-3.5.1.js"
+	  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	  crossorigin="anonymous">//that's the CDN link,wiser</script>
+
+	<script>
+	$(document).ready(()=>{
+
+		$('#lista1').append('<li> Item 4 </li>')
+		$('#lista1').prepend('<li> Item A </li>')
+		$('#lista2').after('<p> Paragraph after </p>')
+		$('#lista1').before('<h3>Before I forget</h3>')
+
+		//$('#lista1').html('<strong> GET BACK TO THE SHADOW</strong>')//this command overwrites the whole ul
+		//$('.teste1').remove() //makes a total removal of the div and li, see bellow
+
+	})
+	
+	
+
+	</script>
+	
+</head>
+
+<body>
+	<ul id="lista1">
+		<li class="teste1">Item 1</li>
+		<li>Item 2</li>
+		<li>Item 3</li>
+	</ul>
+
+	<div id="lista2">
+		<div class="teste1">Item 1</div>
+		<div>Item 2</div>
+		<div>Item 3</div>
+	</div>
+
+	<hr id="linha">
+	
+
+</body>
+</html>

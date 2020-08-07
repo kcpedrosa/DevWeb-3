@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>jQuery</title>
+	<meta charset="utf-8">
+	
+
+
+	<script
+	  src="https://code.jquery.com/jquery-3.5.1.js"
+	  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	  crossorigin="anonymous">//that's the CDN link,wiser</script>
+</head>
+
+<body>
+	<h1>jQuery - Selecionando elementos pt 1</h1>
+
+	<div>Div 1</div>
+	<div class="teste1">Div 2</div>
+
+	<ul>
+		<li class="teste1">Menu 1 - Item 1</li>
+		<li id="list1">Menu 1 - Item 2</li>
+		<li >Menu 1 - Item 3</li>
+	</ul>
+
+	<ul>
+		<li class="itemMenu2">Menu 2 - Item 1</li>
+		<li class="itemMenu2">Menu 2 - Item 2</li>
+		<li class="itemMenu2">Menu 2 - Item 3</li>
+	</ul>
+
+	<input type="text" placeholder="campo1" name="jinput">
+
+	<select class="teste1">
+		<option>== Selecione uma opção ==</option>
+		<option>Opção 1</option>
+		<option>Opção 1</option>
+	</select>
+
+	<br>
+	<img src="carro.jpg">
+
+
+
+<script>
+	console.log($('h1'))
+	console.log($('div'))
+	//$('h1').html('a lib jQuery está funcionando mt bem...');
+</script>
+</body>
+</html>

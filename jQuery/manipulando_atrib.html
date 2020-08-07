@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>jQuery - Sequencia de execução</title>
+	<meta charset="utf-8">
+	
+
+
+	<script
+	  src="https://code.jquery.com/jquery-3.5.1.js"
+	  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	  crossorigin="anonymous">//that's the CDN link,wiser</script>
+
+	<script>
+	$(document).ready( ()=> {
+	function teste(){
+		console.log($('img').attr('src', 'rhydon.png'))
+		//bellow will set a red strip, better set width and height
+		//$('div').attr('style','background-color: red')
+		//$('input').attr('type','password')
+		//$('input#dois').attr('type','password')//affects only the 2nd input
+		$('input#dois').attr('value','im on the verge of insanity')
+	}
+
+	teste()
+
+	})
+	</script>
+	
+</head>
+
+<body>
+	
+
+<img src="voltorb.png" border="3">
+<div style="background-color: green; width: 100px;height: 100px;">teste</div>
+<input type="input" value='im a input' name="">
+<input id="dois" type="input" value='im a second input' name="">
+
+
+
+</body>
+</html>

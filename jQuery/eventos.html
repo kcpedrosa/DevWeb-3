@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			.padrao {
+				background-color: #D0A9F5;
+			}
+
+			#divExt{
+				height: 80px;
+				width: 80px;
+				background-color: #01A9DB;
+				padding: 40px;
+			}
+
+			#divInt{
+				height: 80px;
+				width: 80px;
+				background-color: #08298A;
+			}
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(()=>{
+				$('#onload').html('Página foi carregada....')
+				$(window).scroll(()=>{
+					$('#scroll').html('Scroll foi acionado....')
+				})
+
+				$(window).resize(()=>{
+					$('#redimensionar').html('Página foi redimensionada....').css('background','#A9F5F2')
+				})
+
+				//ATENTION: function / arrow function
+				//note that here we associeted the scroll directly with the tag by the id
+				$('#div1').scroll(function(){
+					$(this).addClass('padrao')
+				})
+				
+				//using arrow function like above will rise an error of context, use as bellow
+				/*
+				$('#div1').scroll((e)=>{
+					console.log(e)
+					//the log is to check what we're receveing in 'e'[we receive an object]
+					$(e.target).css('background-color','green')
+				})
+
+				*/
+				/*In computer science, syntactic sugar is syntax within a programming language that is designed to make things easier to read or to express. It makes the language "sweeter" for human use: things can be expressed more clearly, more concisely, or in an alternative style that some may prefer.*/
+				$('#btn1').mousedown(()=>{
+					$('#div2').css('background', '#58FAAC')
+				})
+
+				$('#btn1').click(()=>{
+					$('#div2').css('background', '#00BFFF')
+				})
+				//obs mouseup and click triggers the functions in the same moment
+
+				$('#double').dblclick(()=>{
+					$('#div2').css('background','#D7DF01')
+				})
+
+				$('#div2').mousemove(function(e){
+					//console.log(e.offsetX, e.offsetY)
+					//$('#result').html("Eixo X: "+e.offsetX+" / Eixo Y: "+e.offsetY)
+					$('#result').html(`Eixo X: ${e.offsetX} / Eixo Y: ${e.offsetY}`)
+				})
+				/*
+				$('body').mousemove(function(e){
+					console.log(e.offsetX, e.offsetY)
+					//just for tests with the body
+				})
+				*/
+				//mouseover/mouseout
+				$('#divExt').mouseover(()=>{
+					$('#resultDiv').html(' Mouseover is over ... ')
+					//mouseenter has the same result
+				})
+
+				$('#divExt').mouseout(()=>{
+					$('#resultDiv').html('Mouseout is out ... ')
+					//mouseleave has the same result
+				})
+
+				//mouseenter/mouseleave
+				//the following four commands is to test the burbling error 
+				$('#divExt').mouseenter(()=>{
+					$('#result2Div').html('Mouseenter entered ...')
+					console.log('Mouseenter entered in div Externa')
+				})
+
+				$('#divExt').mouseleave(()=>{
+					$('#result2Div').html('Mouseleave leaves ...')
+					console.log('Mouseleave leaves the div Externa')
+				})
+
+				//div INTERNA
+				$('#divInt').mouseenter(()=>{
+					console.log('Mouseenter entered in Div Interna')
+					$('#resultDivInt').html('Mouseenter entered ...')
+				})
+
+				$('#divInt').mouseleave(()=>{
+					console.log('Mouseleave leaves the Div Interna')
+					$('#resultDivInt').html('Mouseleave leaves ...')
+				})
+			//note that burbling does not occur with those new methods mouseenter and mouseleave
+			
+			//keyboard tests
+				$('#teclado').keydown(()=>{
+					$('#resultTecla').html('Key pressed ... ')
+					//console.log('Key pressed ....')
+				})
+
+				$('#teclado').keyup((e)=>{
+					$('#resultTecla').html('Key went up ...')
+					//console.log('Key went up ...')
+					console.log(e.keyCode)
+					if(e.keyCode == 13){
+						let valor = $(e.target).val()
+						$('#resultTecla').html(valor)
+						$(e.target).val('')
+					}
+				})
+				//split the files, this is getting too big
+			})
+
+		</script>
+	</head>
+
+	<body>
+		
+		<div id="topo">
+			<h1>Eventos</h1>
+		</div>
+
+		<div>
+			<h3>Browser</h3>
+			<span>Onload: </span>  <span id="onload">?</span><br />
+			<span>Scroll: </span>  <span id="scroll">?</span><br />
+			<span>Resize window: </span>  <span id="redimensionar">?</span>
+			<div id="div1" style="height: 100px; width: 100px; border: solid black 1px; overflow-y: scroll">
+				<!--<br><br><br><br><br><br><br><br>-->
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+			</div>
+			<hr />
+
+			<h3>Mouse</h3>
+			<button id="btn1" type="button">Clique aqui</button>
+			<button id="double" type="button">Clique aqui 2x</button>
+			<div id="div2" style="background-color: red; width: 80px; height: 50px; margin-top: 10px; margin-bottom: 10px"></div>
+			<span>Resultado do evento sobre a div</span>  <span id="result"> =-= </span>
+			<br><br>
+			
+			<div id="divExt">
+				<div id="divInt"></div>
+			</div>
+			<span > Div Externa - </span> <span id="resultDiv"></span>
+			<br>
+			<span id="result2Div"></span>
+
+			<br>
+			<span> Div Interna - </span> <span id="resultDivInt"></span>
+
+
+
+			<hr />
+
+			<h3>Teclado</h3>
+			<span>Nome:</span>
+			<input type="text" id="teclado" />
+			<span id="resultTecla">Resultado do evento sobre o input</span>
+			<hr />
+
+			<h3>Formulário</h3>
+			<form>
+				<span>Nome:</span>
+				<input type="text" />
+
+				<span>E-mail:</span>
+				<input type="text" />
+
+				<span>Motivo do contato:</span>
+				<select>
+					<option value="">-- Selecione --</option>
+					<option value="duvida">Dúvida</option>
+					<option value="sugestao">Sugestão</option>
+				</select>
+
+				<p>
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+				</p>
+				
+				<button type="button">Enviar</button>
+			</form>
+		</div>
+	</body>
+
+</html>

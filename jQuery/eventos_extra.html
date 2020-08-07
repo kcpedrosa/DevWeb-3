@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+
+		<style>
+			#div1{
+				width: 100px;
+				height: 100px;
+				border: 2px solid black;
+			}
+
+			.destaque {
+				background-color: #FA5858;
+			}
+
+		</style>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(()=>{
+				
+				$('#btn2').on('click', ()=>{
+					alert('BTN2 was clicked ... ')
+				})
+				//direct in console : $('#btn1').trigger('click')
+				$('#btn1').on('click',()=>{
+					$('#btn2').trigger('click')
+				})
+				
+				//we will associate this bellow with toggleClass
+				/*
+				$('#div1').hover(
+					(e)=>{$(e.target).addClass('destaque')},
+					(e)=>{$(e.target).removeClass('destaque')}
+					)
+				*/
+				$('#div1').hover(
+					(e)=>{
+						$('#div1').toggleClass('destaque')
+					}
+					)
+				
+
+				//substitute this bellow  with hover
+				/*
+				$('#div1').on('mouseenter', (e)=>{
+					$(e.target).addClass('destaque')
+				})
+
+				$('#div1').on('mouseleave', (e)=>{
+					$(e.target).removeClass('destaque')
+				})
+				*/
+			})
+
+		</script>
+	</head>
+
+	<body>
+		<div class="container">
+		<div class="jumbotron m-5">
+		
+		<h3>Testes de eventos</h3>
+			<button id="btn1" type="button"> BOTAO 1</button>
+			<button id="btn2" type="button"> BOTAO 2</button>
+			<div id="div2" style="background-color: red; width: 80px; height: 50px; margin-top: 10px; margin-bottom: 10px"></div>
+			<span>Resultado do evento sobre a div</span>  <span id="result"> =-= </span>
+			<br><br>
+
+			<div id="div1">
+				
+			</div>
+
+		</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			.focado {
+				background-color: #A9F5D0;
+			}
+
+			.desfocado {
+				background-color: #A4A4A4;
+			}
+
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(()=>{
+				/*
+				$('input').on('focus',(e)=>{
+					$(e.target).removeClass('desfocado')
+					$(e.target).addClass('focado')
+
+				})
+
+				$('input').on('blur',(e)=>{
+					$(e.target).removeClass('focado')
+					$(e.target).addClass('desfocado')
+				})
+				*/
+				$('body').on('focus', '#input1, #nome1 , #email1',(e)=>{
+					$(e.target).removeClass('desfocado')
+					$(e.target).addClass('focado')
+				})
+				//tests
+				//#input1, #nome1 , #email1
+				//$('body').off('blur', 'input')
+				//problem: with id selection off is not working
+
+				$('body').on('blur', '#input1, #nome1 , #email1', (e)=>{
+					$(e.target).removeClass('focado')
+					$(e.target).addClass('desfocado')
+				})
+				//#input1, #nome1 , #email1
+
+
+
+				$('body').append('<input id="input1" type="text" class="desfocado"/>')
+				//to make it work wth the new input we must add a second prmtr to on()
+				
+			
+			})
+
+		</script>
+	</head>
+
+	<body>
+		
+		<h3>Formulário</h3>
+			<form id="form">
+				<span>Nome:</span>
+				<input type="text" id="nome1" class="desfocado" />
+
+				<span>E-mail:</span>
+				<input type="text" id="email1"  class="desfocado" />
+
+				<span>Motivo do contato:</span>
+				<select id="opcao1">
+					<option value="">-- Selecione --</option>
+					<option value="duvida">Dúvida</option>
+					<option value="sugestao">Sugestão</option>
+				</select>
+
+				<p>
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+				</p>
+				
+				<button type="submit">Enviar</button>
+			</form>
+	</body>
+
+</html>

@@ -1,0 +1,3 @@
+SELECT * FROM `tb_vendas` WHERE data_venda BETWEEN 2018-10-01 AND 2018-10-31
+esqueci os ''
+SELECT count(*) FROM `tb_vendas` WHERE data_venda BETWEEN '2018-10-01' AND '2018-10-31'
